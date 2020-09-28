@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         AsyncHttpClient client = new AsyncHttpClient();
         client.get("https://vast-brushlands-23089.herokuapp.com/main/api",
                 new TextHttpResponseHandler() {
@@ -82,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
     // ***
     // TODO - Task 1 - Show Store Information Activity
     // ***
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent infoIntent = new Intent(this, InfoActivity.class);
+        startActivity(infoIntent);
+        return super.onOptionsItemSelected(item);
+    }
 
     private void addCandiesToDatabase(Candy[] candies) {
         SQLiteDatabase db = candyDbHelper.getWritableDatabase();
